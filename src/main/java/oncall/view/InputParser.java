@@ -3,6 +3,7 @@ package oncall.view;
 import java.util.Arrays;
 import java.util.List;
 import oncall.controller.dto.MonthAndStartDayRequest;
+import oncall.controller.dto.WorkerRequest;
 import oncall.util.Validator;
 
 public class InputParser {
@@ -21,6 +22,13 @@ public class InputParser {
         validateStartDay(startDay);
 
         return new MonthAndStartDayRequest(month, startDay);
+    }
+
+    public WorkerRequest parseWorkers(String weekdayInput, String holidayInput) {
+        List<String> weekdayWorkers = Arrays.asList(weekdayInput.split(","));
+        List<String> holidayWorkers = Arrays.asList(holidayInput.split(","));
+
+        return new WorkerRequest(weekdayWorkers, holidayWorkers);
     }
 
     private void validateMonth(String monthInput) {

@@ -35,6 +35,9 @@ public class OncallController {
     private WorkerRequest readWorkers() {
         try {
             String weekdayWorkers = inputView.readWeekdayWorker();
+            String holidayWorkers = inputView.readHolidayWorker();
+
+            return inputParser.parseWorkers(weekdayWorkers, holidayWorkers);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return readWorkers();

@@ -1,6 +1,7 @@
 package oncall.controller;
 
 import oncall.controller.dto.MonthAndStartDayRequest;
+import oncall.controller.dto.WorkerRequest;
 import oncall.view.InputParser;
 import oncall.view.InputView;
 import oncall.view.OutputView;
@@ -18,6 +19,7 @@ public class OncallController {
 
     public void runApplication() {
         MonthAndStartDayRequest monthAndStartDayRequest = readMonthAndStartDay();
+        WorkerRequest workerRequest = readWorkers();
     }
 
     private MonthAndStartDayRequest readMonthAndStartDay() {
@@ -27,6 +29,15 @@ public class OncallController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return readMonthAndStartDay();
+        }
+    }
+
+    private WorkerRequest readWorkers() {
+        try {
+            String weekdayWorkers = inputView.readWeekdayWorker();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return readWorkers();
         }
     }
 }

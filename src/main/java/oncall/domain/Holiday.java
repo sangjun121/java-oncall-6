@@ -1,5 +1,8 @@
 package oncall.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Holiday {
     JANUARY_1ST("1", "1"),
     MARCH_1ST("3", "1"),
@@ -11,10 +14,22 @@ public enum Holiday {
     DECEMBER_25TH("12", "25");
 
     private final String month;
-    private final String day;
+    private final String date;
 
-    Holiday(String month, String day) {
+    Holiday(String month, String date) {
         this.month = month;
-        this.day = day;
+        this.date = date;
+    }
+
+    public static List<Integer> getDateByMonth(String target) {
+        List<Integer> dates = new ArrayList<>();
+
+        for (Holiday holiday : Holiday.values()) {
+            if(holiday.month.equals(target)){
+                dates.add(Integer.parseInt(holiday.date));
+            }
+        }
+
+        return dates;
     }
 }

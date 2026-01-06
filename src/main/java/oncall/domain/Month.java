@@ -1,5 +1,7 @@
 package oncall.domain;
 
+import java.util.List;
+
 public class Month {
     private static final String[] DAYS = {"월", "화", "수", "목", "금", "토", "일"};
 
@@ -12,7 +14,7 @@ public class Month {
         this.month = month;
         this.endDate = getEndDate(month);
         this.days = setDays(Integer.parseInt(endDate), startDay);
-
+        this.isHoliday = setHolidays(Integer.parseInt(endDate));
     }
 
     private String getEndDate(String month) {
@@ -28,6 +30,24 @@ public class Month {
         }
 
         return days;
+    }
+
+    private boolean[] setHolidays(int endDate) {
+        boolean[] isHoliday = new boolean[endDate];
+
+        List<Integer> holidays = Holiday.getDateByMonth(month);
+
+        for (Integer index : holidays) {
+            isHoliday[index - 1] = true;
+        }
+
+        for (int i = 0; i < days.length; i++) {
+            if (days[i].equals("토") || days[i].equals("일")) {
+                isHoliday[i] = true;
+            }
+        }
+
+        return isHoliday;
     }
 
     private int findDayIndex(String startDay) {

@@ -1,5 +1,6 @@
 package oncall.controller;
 
+import oncall.application.OncallService;
 import oncall.controller.dto.MonthAndStartDayRequest;
 import oncall.controller.dto.WorkerRequest;
 import oncall.view.InputParser;
@@ -10,16 +11,20 @@ public class OncallController {
     private final InputView inputView;
     private final InputParser inputParser;
     private final OutputView outputView;
+    private final OncallService oncallService;
 
-    public OncallController(InputView inputView, InputParser inputParser, OutputView outputView) {
+    public OncallController(InputView inputView, InputParser inputParser, OutputView outputView,
+                            OncallService oncallService) {
         this.inputView = inputView;
         this.inputParser = inputParser;
         this.outputView = outputView;
+        this.oncallService = oncallService;
     }
 
     public void runApplication() {
         MonthAndStartDayRequest monthAndStartDayRequest = readMonthAndStartDay();
         WorkerRequest workerRequest = readWorkers();
+        oncallService.runOncall(monthAndStartDayRequest, workerRequest);
     }
 
     private MonthAndStartDayRequest readMonthAndStartDay() {

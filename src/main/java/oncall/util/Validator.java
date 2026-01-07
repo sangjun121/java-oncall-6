@@ -11,4 +11,8 @@ public class Validator {
     public static boolean isDuplicated(List<String> target) {
         return new HashSet<>(target).size() != target.size();
     }
+
+    public static boolean isLessOrEqualThan(int target, int threshold) {
+        return target <= threshold;
+    }
 }

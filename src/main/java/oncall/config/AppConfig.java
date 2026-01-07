@@ -1,5 +1,6 @@
 package oncall.config;
 
+import oncall.application.OncallService;
 import oncall.controller.OncallController;
 import oncall.view.InputParser;
 import oncall.view.InputView;
@@ -27,7 +28,11 @@ public class AppConfig {
         return new OutputView();
     }
 
+    public OncallService oncallService(){
+        return new OncallService();
+    }
+
     public OncallController oncallController() {
-        return new OncallController(inputView(), inputParser(), outputView());
+        return new OncallController(inputView(), inputParser(), outputView(), oncallService());
     }
 }

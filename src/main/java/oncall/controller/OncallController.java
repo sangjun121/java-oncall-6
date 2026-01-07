@@ -2,6 +2,7 @@ package oncall.controller;
 
 import oncall.application.OncallService;
 import oncall.controller.dto.MonthAndStartDayRequest;
+import oncall.controller.dto.Result;
 import oncall.controller.dto.WorkerRequest;
 import oncall.view.InputParser;
 import oncall.view.InputView;
@@ -24,7 +25,8 @@ public class OncallController {
     public void runApplication() {
         MonthAndStartDayRequest monthAndStartDayRequest = readMonthAndStartDay();
         WorkerRequest workerRequest = readWorkers();
-        oncallService.runOncall(monthAndStartDayRequest, workerRequest);
+        Result result = oncallService.runOncall(monthAndStartDayRequest, workerRequest);
+        outputView.printResult(result);
     }
 
     private MonthAndStartDayRequest readMonthAndStartDay() {

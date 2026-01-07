@@ -16,7 +16,14 @@ public final class WorkerRequest {
 
         this.weekdayWorkers = trimedWeekdayWorkers;
         this.holidayWorkers = trimedHolidayWorkers;
+    }
 
+    public List<String> getHolidayWorkers() {
+        return holidayWorkers;
+    }
+
+    public List<String> getWeekdayWorkers() {
+        return weekdayWorkers;
     }
 
     private List<String> trim(List<String> workers) {

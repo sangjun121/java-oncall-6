@@ -17,8 +17,24 @@ public class Month {
         this.isHoliday = setHolidays(Integer.parseInt(endDate));
     }
 
+    public String getMonth(){
+        return month;
+    }
+
+    public String getEndDate(){
+        return endDate;
+    }
+
+    public String[] getDays(){
+        return days;
+    }
+
+    public boolean[] getIsHoliday(){
+        return isHoliday;
+    }
+
     private String getEndDate(String month) {
-        return Calendar.valueOf(month).getEndDate();
+        return Calendar.getCalenderByMonth(month).getEndDate();
     }
 
     private String[] setDays(int endDate, String startDay) {

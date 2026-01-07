@@ -22,7 +22,16 @@ public enum Calendar {
         this.endDate = endDate;
     }
 
-    public String getEndDate(){
+    public String getEndDate() {
         return endDate;
+    }
+
+    public static Calendar getCalenderByMonth(String month) {
+        for (Calendar calendar : Calendar.values()) {
+            if (calendar.month.equals(month)) {
+                return calendar;
+            }
+        }
+        return null;
     }
 }
